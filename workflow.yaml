@@ -1,0 +1,17 @@
+resources:
+  jobs:
+    Scd2_Merge_Job:
+      name: Scd2 Merge Job
+      tasks:
+        - task_key: SCD2_Merge
+          notebook_task:
+            notebook_path: /Workspace/Users/sunkusankarsh@gmail.com/SCD2-Merge-on-Delta-Tables-/SCD2_Merge
+            base_parameters:
+              arrival_date: 2024-07-25
+            source: WORKSPACE
+          existing_cluster_id: 0102-151759-js6mqcf7
+          libraries:
+            - pypi:
+                package: pydeequ
+      queue:
+        enabled: true
