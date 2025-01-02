@@ -160,13 +160,13 @@ scd_table_path = "incremental_load.default.customer_dim"
 scd_table_exists = spark._jsparkSession.catalog().tableExists(scd_table_path)
 
 if scd_table_exists:
-    scd_table = DeltaTable.forName(spark,scf_table_path)
+    scd_table = DeltaTable.forName(spark,scd_table_path)
     display(scd_table.toDF())
 
     scd_table.alias("scd").merge(
         customer_df.alias("source"), "scd.customer_id = source.customer_id and scd.valid_to = '9999-12-31'"
         ).whenMatchedUpdate(set={
-            "valid_to": "updates.valid_from",
+            "valid_to": "source.valid_from",
         }) \
         .execute()
 
