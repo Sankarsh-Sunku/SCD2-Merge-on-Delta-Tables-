@@ -74,7 +74,7 @@ display(customer_df)
 
 from pydeequ.checks import Check, CheckLevel
 from pydeequ.verification import VerificationSuite, VerificationResult
-
+#pydeequ will only work with spark version less than 3.3
 
 check_booking_data = Check(spark, CheckLevel.Error, "Booking Data Check")\
     .hasSize(lambda x: x > 0)\
